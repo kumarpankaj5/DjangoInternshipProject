@@ -1,0 +1,33 @@
+<!-- view_account.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+</head>
+<body>
+    <h1>Account Information</h1>
+    
+    <h2>Account Details</h2>
+    <p>Account Holder: {{ account.user.get_full_name }}</p>
+    <p>Email: {{ account.user.email }}</p>
+    <!-- Add more fields as needed -->
+
+    <h2>Service Requests</h2>
+    <ul>
+    {% for request in service_requests %}
+        <li>
+            Request Type: {{ request.request_type }} <br>
+            Details: {{ request.details }} <br>
+            Status: {{ request.status }} <br>
+            Submitted At: {{ request.submitted_at }} <br>
+            Resolved At: {{ request.resolved_at }} <br>
+        </li>
+    {% empty %}
+        <li>No service requests found.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!-- request_tracking.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Request Tracking</title>
+</head>
+<body>
+    <h1>Service Request Tracking</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Request Type</th>
+                <th>Details</th>
+                <th>Attachment</th> <!-- Add a new column for attachment -->
+                <th>Status</th>
+                <th>Submitted At</th>
+                <th>Resolved At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in service_requests %}
+            <tr>
+                <td>{{ request.request_type }}</td>
+                <td>{{ request.details }}</td>
+                <td>
+                    {% if request.attachment %}
+                        <a href="{{ request.attachment.url }}">Download Attachment</a>
+                    {% else %}
+                        No attachment
+                    {% endif %}
+                </td>
+                <td>{{ request.status }}</td>
+                <td>{{ request.submitted_at }}</td>
+                <td>{{ request.resolved_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
